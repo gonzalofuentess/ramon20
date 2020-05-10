@@ -4,19 +4,16 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Ramon</title>
-        <!-- Tell the browser to be responsive to screen width -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-        <!-- Ionicons -->
-        <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
-        <!-- icheck bootstrap -->
-        <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="../css/adminlte.css">
-        <!-- Google Font: Source Sans Pro -->
-        <!--  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+
+        <link rel="stylesheet" href="../vendor/plugins/fontawesome/css/all.min.css">
+
+        <link rel="stylesheet" href="../vendor/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+        <link rel="stylesheet" href="../vendor/css/adminlte.css">
+
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -28,46 +25,43 @@
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Ingrese Datos</p>
 
-                    <form action="../../index3.html" method="post">
+                    <form role="form" action="return false" onsubmit="return false">
                         <div class="input-group mb-3">
-                            <input type="usuario" class="form-control" placeholder="Usuario">
+                            <input id="user" type="usuario" class="form-control" placeholder="Usuario" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-"></span>
+                                    <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input id="pass" type="password" class="form-control" placeholder="Password" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <div id="resultado"></div>
                         <div class="row">    
                             <div class="col-6">
                             </div>
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                                <button type="submit" class="btn btn-primary btn-block" onclick="Validar(document.getElementById('user').value, document.getElementById('pass').value);">Iniciar Sesión</button>
                             </div>        
-
-                    </form> 
-
-
+                        </div>
+                    </form>
                 </div>
-                <!-- /.login-card-body -->
+
             </div>
         </div>
-        <!-- /.login-box -->
-    </div
 
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <!--<script src="../dist/js/adminlte.min.js"></script>-->
 
-</body>
+        <script src="../vendor/plugins/jquery/jquery.min.js"></script>
+        <script src="../vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../vendor/ramon/login.js">
+                                  
+        </script>
+    </body>
 </html>
