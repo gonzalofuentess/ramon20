@@ -19,7 +19,7 @@ $dato = $consulta->validaUsuario($user, $pass);
 
 if ($dato == 1) {
     $_SESSION['usuario'] = $user;
-    echo '<script>location.href = "./config/"</script>';
+    echo '<script>location.href = "./main/"</script>';
 } if ($dato == 0) {
     echo '<span style="color:red;">El usuario y/o clave son incorrectas, vuelva a intentarlo</span>';
 } else {

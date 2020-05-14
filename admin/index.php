@@ -4,24 +4,19 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Ramon</title>
-
+        <link rel="icon" type="image/png" href="../vendor/img/ramon2.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
         <link rel="stylesheet" href="../vendor/plugins/fontawesome/css/all.min.css">
-
         <link rel="stylesheet" href="../vendor/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
         <link rel="stylesheet" href="../vendor/css/adminlte.css">
-
     </head>
     <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="login-logo">
-                <a href="../../index2.html"><b>Admin</b>LTE</a>
-            </div>
+        <div class="login-box">           
             <!-- /.login-logo -->
             <div class="card">
+                <div class="card-header text-center"><!--<a href="../index.html">-->
+                    <img class="logo-img" src="../vendor/img/logo.png" alt="logo">
+                </div>
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Ingrese Datos</p>
 
@@ -60,8 +55,6 @@
 
         <script src="../vendor/plugins/jquery/jquery.min.js"></script>
         <script src="../vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="../vendor/ramon/login.js">
-                                  
-        </script>
+        <script src="../vendor/ramon/login.js"></script>
     </body>
 </html>
