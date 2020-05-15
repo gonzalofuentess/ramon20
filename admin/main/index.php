@@ -36,7 +36,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="index3.html" class="nav-link">Home</a>
+                        <a href="../main/" class="nav-link">Home</a>
                     </li>     
                 </ul>
 
@@ -76,8 +76,21 @@
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-            <?php include './menu/menu.php';?>
+            <?php include './menu/menu.php'; ?>
             <!-- /.control-sidebar -->
+
+
+            <?php
+            if ($valor == 0) {
+                include './dashboard/dashboard.php';
+            }elseif ($menu==11) {
+                include './config/radio.php';
+            }
+            ?>
+
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside> 
 
             <!-- Main Footer -->
             <footer class="main-footer">
