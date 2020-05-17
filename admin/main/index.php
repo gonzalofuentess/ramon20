@@ -83,7 +83,7 @@
             <?php
             if ($valor == 0) {
                 include './dashboard/dashboard.php';
-            }elseif ($menu==11) {
+            } elseif ($menu == 11) {
                 include './config/radio.php';
             }
             ?>
@@ -113,8 +113,12 @@
         <script src="../../vendor/dist/js/adminlte.js"></script>
 
         <!-- OPTIONAL SCRIPTS -->
-        <script src="../../vendor/plugins/chart.js/Chart.min.js"></script>
+
         <script src="../../vendor/dist/js/demo.js"></script>
+        
+        <?php if($menu==0){ ?>
+        <script src="../../vendor/plugins/chart.js/Chart.min.js"></script> 
         <script src="../../vendor/dist/js/pages/dashboard3.js"></script>
-    </body>
+        <?php }?>
+         </body>
 </html>
