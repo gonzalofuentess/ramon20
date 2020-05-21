@@ -7,3 +7,13 @@ if ($pdo != null) {
 } else {
     echo 'Whoops, could not connect to the SQLite database!';
 }
+
+
+
+require ('../admin/static/modelo.php');
+
+$consulta = new Consulta();
+
+$radio =$consulta->Radio();
+print_r($radio['frecuencia']);
+

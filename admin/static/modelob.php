@@ -2,9 +2,9 @@
 
 require_once 'SQLiteConnection.php';
 
-class Consulta {
+class Registro {
     
-    function validaUsuario($user, $pass) {
+    function actualizaRadio($user, $pass) {
         $pdo = (new SQLiteConnection())->connect();
         $consulta = $pdo->prepare('SELECT count(usuario) as cuenta from usuario where usuario= :usuario and password= :password  and id=1;');
         #$resultado = $consulta->query('select * from usuario');
@@ -23,15 +23,17 @@ class Consulta {
         #return $row['cuenta'];     
     }
     
-    public function Test() {
+    public function actualizaBaja($valor,$estado) {
         $pdo = (new SQLiteConnection())->connect();
         #$conexion = (new SQLiteConnection())->connect();
-        $stmt = $pdo->query("SELECT * from usuario");
-        $tables = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $tables[] = $row['usuario'];
-        }
-        return $tables;
+        $stmt = $pdo->prepare("UPDATE baja SET valor=:valor, estado=:estado WHERE id=2");
+        $stmt->bindParam(":valor",$valor,PDO::PARAM_INT);
+        $stmt->bindParam(":estado",$estado,PDO::PARAM_INT);
+        if($stmt->execute()){
+            return 1;
+        }else{
+            return 0;
+        }        
     }
 
 }

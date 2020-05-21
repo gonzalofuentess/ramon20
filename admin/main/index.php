@@ -1,3 +1,4 @@
+<?php $menu = 0; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,20 +13,9 @@
         <link rel="stylesheet" href="../../vendor/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../vendor/css/adminlte.min.css">
-        <!-- Google Font: Source Sans Pro -->
-        <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
-        <!--   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="../../vendor/dynameter/jquery.dynameter.css">
     </head>
-    <!--
-    BODY TAG OPTIONS:
-    =================
-    Apply one or more of the following classes to to the body tag
-    to get the desired effect
-    |---------------------------------------------------------|
-    |LAYOUT OPTIONS | sidebar-collapse                        |
-    |               | sidebar-mini                            |
-    |---------------------------------------------------------|
-    -->
+
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <!-- Navbar -->
@@ -39,58 +29,20 @@
                         <a href="../main/" class="nav-link">Home</a>
                     </li>     
                 </ul>
+                <!-- notificaciones -->
 
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Messages Dropdown Menu -->
 
-                    <!-- Notifications Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge">15</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-item dropdown-header">15 Notifications</span>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                                <span class="float-right text-muted text-sm">3 mins</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-users mr-2"></i> 8 friend requests
-                                <span class="float-right text-muted text-sm">12 hours</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-file mr-2"></i> 3 new reports
-                                <span class="float-right text-muted text-sm">2 days</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                        </div>
-                    </li>  
-                </ul>
             </nav>
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-            <?php include './menu/menu.php'; ?>
+            <?php include '../menu/menu.php'; ?>
             <!-- /.control-sidebar -->
 
-
             <?php
-            if ($valor == 0) {
-                include './dashboard/dashboard.php';
-            } elseif ($menu == 11) {
-                include './config/radio.php';
-            }
+            include './dashboard/dashboard.php';
             ?>
 
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside> 
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -105,8 +57,10 @@
 
         <!-- REQUIRED SCRIPTS -->
 
-        <!-- jQuery -->
+        <!-- jQuery -->        
         <script src="../../vendor/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../vendor/dynameter/jquery.dynameter.js"></script>
+
         <!-- Bootstrap -->
         <script src="../../vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE -->
@@ -115,10 +69,9 @@
         <!-- OPTIONAL SCRIPTS -->
 
         <script src="../../vendor/dist/js/demo.js"></script>
-        
-        <?php if($menu==0){ ?>
         <script src="../../vendor/plugins/chart.js/Chart.min.js"></script> 
         <script src="../../vendor/dist/js/pages/dashboard3.js"></script>
-        <?php }?>
-         </body>
+
+
+    </body>
 </html>

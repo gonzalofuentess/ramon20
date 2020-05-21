@@ -3,7 +3,7 @@
 session_start();
 $user = $_POST['user'];
 $pass = $_POST['pass'];
-require ('../admin/static/modelo.php');
+require ('../admin/static/modeloa.php');
 // Crea la conexión
 
 
