@@ -28,5 +28,12 @@ class Consulta {
         $baja = ['valor' => $row['valor'], 'estado' => $row['estado']];
         return $baja;
     }
+     function Servidor() {
+        $pdo = (new SQLiteConnection())->connect();
+        $consulta = $pdo->query('SELECT servidor,puerto,tls, remitente,autentificacion,usuario from servidor where id=1');
+        $row = $consulta->fetch(PDO::FETCH_ASSOC);
+        $servidor = ['servidor' => $row['servidor'], 'puerto' => $row['puerto'],'tls' => $row['tls'],'remitente' => $row['remitente'],'autentificacion' => $row['autentificacion'],'usuario' => $row['usuario']];
+        return $servidor;
+    }
 
 }

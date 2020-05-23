@@ -33,18 +33,31 @@ $baja = $consulta->Baja();
                                 <div class="form-group">
                                     <label for="frecuencia">Frecuencia</label>
                                     <input type="number" class="form-control" id="senal" type="number" min="88.1" max="107.9" step="0.1" placeholder="Ingrese Frecuencia" value="<?php echo $radio['frecuencia']; ?>">
+                                    <div class="text-danger">
+                                        <small id="freq"></small>
+                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción</label>
                                     <input type="text" class="form-control" id="descripcion" maxlength="16" placeholder="Ingrese Descripción" value="<?php echo $radio['descripcion']; ?>">
+                                    <div class="text-danger">
+                                        <small id="desc"></small>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="silencio">Tiempo de Silencio</label>
                                     <input type="number" class="form-control" id="tiempo" min="5" max="900" placeholder="Ingrese Tiempo de Silencio" value="<?php echo $radio['silencio']; ?>">
+                                    <div class="text-danger">
+                                        <small id="sile"></small>
+                                    </div>
                                 </div> 
                                 <div class="form-group">
                                     <label for="volumen">Volumen</label>
                                     <input type="number" min="1" max="5" class="form-control" id="volumen" placeholder="Ingrese Volumen" value="<?php echo $radio['volumen']; ?>">
+                                    <div class="text-danger">
+                                        <small id="volu"></small>
+                                    </div>
                                 </div>  
                             </div>
                             <!-- /.card-body -->
@@ -64,10 +77,13 @@ $baja = $consulta->Baja();
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="bajacriticaltext">Señal Baja</label>
-                                    <input type="number" class="form-control" id="bajacriticaltext" type="number" min="5" max="60" step="1" placeholder="Señal Baja" value="<?php echo $baja['valor'];?>">
+                                    <input type="number" class="form-control" id="bajacriticaltext" type="number" min="5" max="60" step="1" placeholder="Señal Baja" value="<?php echo $baja['valor']; ?>"> 
+                                    <div class="text-danger">
+                                        <small id="baj"></small>
+                                    </div>
                                 </div>
                                 <div class="form-group">                                      
-                                    <input type="checkbox" id="switchbaja" name="switchbaja" <?php if($baja['estado']==1){ echo 'checked';} ?> data-bootstrap-switch>
+                                    <input type="checkbox" id="switchbaja" name="switchbaja" <?php if ($baja['estado'] == 1) { echo 'checked';} ?> data-bootstrap-switch>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -93,13 +109,13 @@ $baja = $consulta->Baja();
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->                      
-                    <div align="center">
-                        <br>
-                        <br>
-                        <div  id="payloadMeterDiv"></div>
-                        <br>
-                        <br>
-                    </div>        
+                        <div align="center">
+                            <br>
+                            <br>
+                            <div  id="payloadMeterDiv"></div>
+                            <br>
+                            <br>
+                        </div>        
                     </div>
 
                     <!-- right column -->
@@ -123,20 +139,26 @@ $baja = $consulta->Baja();
 </script>
 
 <script>
-    function radio(senal, descripcion, tiempo,volumen) {
+    function radio(senal, descripcion, tiempo, volumen) {
         var descr = $.trim(descripcion);
         var ok = true;
         if (!descr) {
-            $('#desc').html('<font color="red">Debe completar este campo</font>');
+            $('#desc').html('Debe completar este campo');
             ok = false;
+            var element = document.getElementById("descripcion");
+            element.classList.add("is-invalid");
         }
         if (tiempo < 5 || tiempo > 900 || !tiempo) {
-            $('#sile').html('<font color="red">Debe ingresar un valor entre 5 y 900</font>');
+            $('#sile').html('Debe ingresar un valor entre 5 y 900');
             ok = false;
+            var element = document.getElementById("tiempo");
+            element.classList.add("is-invalid");
         }
         if (volumen < 1 || volumen > 5) {
-            $('#volu').html('<font color="red">Debe ingresar un valor entre 1 y 5</font>');
+            $('#volu').html('Debe ingresar un valor entre 1 y 5');
             ok = false;
+            var element = document.getElementById("volumen");
+            element.classList.add("is-invalid");
         }
         try {
             var res = senal * 10;
@@ -146,47 +168,48 @@ $baja = $consulta->Baja();
                     var respuesta = confirm("Al modificar la frecuencia se eliminará el historial de registros asociados. ¿Desea Continuar?");
                     if (respuesta === true)
                         if (ok) {
-                            ejecutar(senal, descripcion, tiempo,volumen);
+                            ejecutar(senal, descripcion, tiempo, volumen);
                         }
                 } else
                 if (ok) {
-                    ejecutar(senal, descripcion, tiempo,volumen);
+                    ejecutar(senal, descripcion, tiempo, volumen);
                 }
             } else {
-                $('#freq').html('<font color="red">Debe Ingresar un valor entre 88.1 y 107.9</font>');
+                $('#freq').html('Debe Ingresar un valor entre 88.1 y 107.9');
+                var element = document.getElementById("senal");
+                element.classList.add("is-invalid");
             }
         } catch (err) {
-            $('#freq').html('<font color="red">Debe Ingresar un valor entre 88.1 y 107.9</font>');
+            $('#freq').html('Debe Ingresar un valor entre 88.1 y 107.9');
         }
     }
 
-    function ejecutar(senal, descripcion, tiempo,volumen) {
+    function ejecutar(senal, descripcion, tiempo, volumen) {
         $.ajax({
-            url: "ejecuta.php",
+            url: "up_radio.php",
             type: "POST",
-            data: "senal=" + senal + "&descripcion=" + descripcion + "&tiempo=" + tiempo +"&volumen=" + volumen,
+            data: "senal=" + senal + "&descripcion=" + descripcion + "&tiempo=" + tiempo + "&volumen=" + volumen,
             success: function (resp) {
                 alert(resp);
-                //$('#resultado').html(resp)
                 if (resp === "Datos Actualizados") {
                     location.reload();
                 }
             }
         });
     }
-    
-     function baja(bajacriticaltext) {
-       if (document.getElementById('switchbaja').checked) { 
-                if (bajacriticaltext > 60 || bajacriticaltext < 5) {
-                    $('#baj').html('<font color="red">Debe ingresar un valor entre 5 a 60</font>');
-                } else {
-                    actualizabaja(bajacriticaltext);
-                }
-             
+
+    function baja(bajacriticaltext) {
+        if (document.getElementById('switchbaja').checked) {
+            if (bajacriticaltext > 60 || bajacriticaltext < 5) {
+                $('#baj').html('<font color="red">Debe ingresar un valor entre 5 a 60</font>');
+            } else {
+                actualizabaja(bajacriticaltext);
+            }
+
         } else {
             actualizabaja(bajacriticaltext);
         }
-       
+
     }
     function actualizabaja(bajacriticaltext) {
         $.ajax({
