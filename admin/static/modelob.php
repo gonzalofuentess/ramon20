@@ -1,7 +1,6 @@
 <?php
 
 require_once 'SQLiteConnection.php';
-
 class Registro {
 
     function actualizaRadio($frec, $desc, $tiempo, $vol) {
@@ -17,8 +16,7 @@ class Registro {
             return 0;
         }
     }
-
-    public function actualizaBaja($valor, $estado) {
+    function actualizaBaja($valor, $estado) {
         $pdo = (new SQLiteConnection())->connect();
         $stmt = $pdo->prepare("UPDATE baja SET valor=:valor, estado=:estado WHERE id=2");
         $stmt->bindParam(":valor", $valor, PDO::PARAM_INT);
@@ -29,8 +27,7 @@ class Registro {
             return 0;
         }
     }
-
-    public function guardaServidor($datos) {
+    function guardaServidor($datos) {
         $pdo = (new SQLiteConnection())->connect();
         if ($datos['autenticacion'] == 0) {
             $stmt = $pdo->prepare("UPDATE servidor SET servidor=:servidor, puerto=:puerto,"
@@ -62,5 +59,55 @@ class Registro {
             }
         }
     }
-
+    function limpiaServidor() {
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->query("UPDATE servidor SET servidor=NULL, puerto=NULL,"
+                . "tls=NULL,remitente=NULL,autentificacion=NULL,usuario=NULL, "
+                . "clave=NULL WHERE id=1");
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    function guardaDestinatario($correo) {
+        require 'modeloa.php';
+        $contador = new Consulta();
+        if ($contador->cuentaDestinatarios() < 6) {
+            if ($contador->verificaDestinatario($correo) == 1) {
+                return 3;
+            } else {
+                $pdo = (new SQLiteConnection())->connect();
+                $stmt = $pdo->prepare("INSERT INTO destinatario(correo) values(:correo)");
+                $stmt->bindParam(":correo", $correo, PDO::PARAM_STR);
+                if ($stmt->execute()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        } else {
+            return 2;
+        }
+    }
+    function eliminaDestinatario($id){
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->prepare("DELETE from destinatario where id=:id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }        
+    }
+    function guardaComando($comando){
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->prepare("update comando set comando=:comando");
+        $stmt->bindParam(":comando", $comando, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }  
+    }
 }

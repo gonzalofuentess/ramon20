@@ -50,7 +50,7 @@ $guardar = new Registro();
 if(($guardar->guardaServidor($arreglo))==1){
     echo "Datos Actualizados";
 }else{
-    echo "Datos NO Actualizados";
+    echo "Datos No Actualizados";
 }
 #shell_exec('sudo systemctl start actualizadatos.service');
 
