@@ -67,5 +67,20 @@ class Consulta {
         }
         return $destinatarios;
     }
+    function listaComando(){
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->query("SELECT comando from comando WHERE id=1;");
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['comando'];
+    }
+    function listaStreaming() {
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->query("SELECT servidor, puerto, montaje FROM streaming where id=1");
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $datos = ['servidor'=>$row['servidor'],'puerto' =>$row['puerto'],'montaje'=>$row['montaje']];
+        return $datos;
+    }
 
 }

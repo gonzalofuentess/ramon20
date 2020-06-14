@@ -12,7 +12,11 @@ if ($menu == 1) {
         }
         elseif (strcmp(($_GET["menu"]), "ramona") == 0) {
             $submenu = 15;
-        } else {
+        } 
+        elseif (strcmp(($_GET["menu"]), "red") == 0) {
+            $submenu = 16;
+        }
+        else {
             $submenu = 11;
         }
     }else{
@@ -96,6 +100,12 @@ elseif ($menu == 2) {
                             <a href="../config/index.php?menu=ramona" <?php if ($submenu == 15) { echo 'class="nav-link active"'; } else { echo 'class="nav-link"'; }?>>
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ramona</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../config/index.php?menu=red" <?php if ($submenu == 16) { echo 'class="nav-link active"'; } else { echo 'class="nav-link"'; }?>>
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Red</p>
                             </a>
                         </li>
                     </ul>

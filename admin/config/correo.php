@@ -101,7 +101,7 @@ $destinatario = (new Consulta())->listarDestinatarios();
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success" onclick="server(document.getElementById('servidor').value, document.getElementById('puerto').value, document.getElementById('remitente').value, document.getElementById('usuario').value, document.getElementById('password').value)">Guardar</button>
+                            <button type="submit" class="btn btn-success" onclick="server(document.getElementById('servidor').value,document.getElementById('puerto').value,document.getElementById('remitente').value,document.getElementById('usuario').value, document.getElementById('password').value)">Guardar</button>
                             <span> <button type="submit" class="btn btn-danger" onclick="eliminar()" <?php if ($consulta['servidor'] == NULL || $destinatario) echo 'disabled'; ?>>Borrar</button></span>
                         </div>
                     </div>
@@ -273,13 +273,10 @@ $destinatario = (new Consulta())->listarDestinatarios();
             }
         }
     }
-
     function validaMail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
-
     function ejecutaserver(servidor, puerto, remitente, correousuario, correopassword, autenticacion) {
-        //alert('ALGO');
         $.ajax({
             url: "up_server.php",
             type: "POST",

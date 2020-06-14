@@ -1,3 +1,9 @@
+<?php 
+
+require '../static/modeloa.php';
+$comando = (new Consulta())->listaComando();
+
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -20,16 +26,16 @@
                         <div class="form-group">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="frecuencia">Comando Curl</label>
-                                    <textarea class="form-control" id="comando" rows="3"></textarea> 
+                                    <label for="comando">Comando Curl</label>
+                                    <textarea class="form-control" id="comando" rows="3"><?php echo $comando; ?></textarea> 
                                 </div>
 
                             </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success" onclick="guardar(document.getElementById('comando').value)">Guardar</button>
-                            <span> <button type="submit" class="btn btn-info">Probar</button></span>
-                            <span> <button type="submit" class="btn btn-danger">Borrar</button></span>
+                            <span> <button type="submit" class="btn btn-info" <?php if(!$comando){echo 'disabled';}?>>Probar</button></span>
+                            <span> <button type="submit" class="btn btn-danger" onclick="eliminar()" <?php if(!$comando){echo 'disabled';}?>>Borrar</button></span>
                         </div>
                     </div>                           
                 </div>

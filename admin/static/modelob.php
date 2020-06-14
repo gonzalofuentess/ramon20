@@ -102,8 +102,39 @@ class Registro {
     }
     function guardaComando($comando){
         $pdo = (new SQLiteConnection())->connect();
-        $stmt = $pdo->prepare("update comando set comando=:comando");
+        $stmt = $pdo->prepare("update comando set comando=:comando where id=1");
         $stmt->bindParam(":comando", $comando, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }  
+    }
+    function eliminaComando(){
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->query("update comando set comando=NULL where id=1");
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }  
+    }
+    function actualizaStreaming($servidor, $puerto,$montaje,$password) {
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->prepare("UPDATE streaming SET servidor=:servidor, puerto=:puerto,montaje=:montaje,password=:password,estado=1 WHERE id=1");
+        $stmt->bindParam(":servidor", $servidor, PDO::PARAM_STR);
+        $stmt->bindParam(":puerto", $puerto, PDO::PARAM_INT);
+        $stmt->bindParam(":montaje", $montaje, PDO::PARAM_STR);
+        $stmt->bindParam(":password", $password, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+        function eliminaStreaming(){
+        $pdo = (new SQLiteConnection())->connect();
+        $stmt = $pdo->query("update streaming set servidor=NULL,puerto=NULL,montaje=NULL,password=NULL,estado=0 where id=1");
         if ($stmt->execute()) {
             return 1;
         } else {
